@@ -151,3 +151,12 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Ignore adding data to the repo
+data/
+*.jpg
+*.png
+*.jpeg
+*.gif
+*.svg
+*.ico
