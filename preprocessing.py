@@ -56,3 +56,8 @@ train_dataset = ConcatDataset([train_dataset, augmented_disgust_dataset])
 
 # Update the train DataLoader
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+
+# Count the number of "disgust" samples in the train_dataset
+num_disgust_samples = len(disgust_dataset)
+
+print(f"Number of 'disgust' samples: {num_disgust_samples * 8}")
