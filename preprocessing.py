@@ -15,6 +15,9 @@ TRAIN_DATA_PATH = os.path.join(os.getcwd(), 'data', 'train')
 # Path to the test data
 TEST_DATA_PATH = os.path.join(os.getcwd(), 'data', 'test')
 
+# Disgust Samples Multiplier
+MULTIPLIER = 3
+
 # Define your transformations
 transform = transforms.Compose([
     transforms.Grayscale(),
@@ -49,7 +52,7 @@ to_pil = ToPILImage()
 
 # Apply data augmentation to the "disgust" images
 augmented_disgust_dataset = [(augment_transform(to_pil(img[0])), img[1])
-                             for _ in range(8) for img in disgust_dataset]
+                             for _ in range(MULTIPLIER) for img in disgust_dataset]
 
 # Combine the original dataset with the augmented "disgust" images
 train_dataset = ConcatDataset([train_dataset, augmented_disgust_dataset])
@@ -60,4 +63,4 @@ train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 # Count the number of "disgust" samples in the train_dataset
 num_disgust_samples = len(disgust_dataset)
 
-print(f"Number of 'disgust' samples: {num_disgust_samples * 8}")
+print(f"Number of 'disgust' samples: {num_disgust_samples * MULTIPLIER}")
