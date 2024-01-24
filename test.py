@@ -3,16 +3,17 @@ from PIL import Image
 from torchvision import transforms
 from cnn import FERModel
 
-# Load the model
-model = FERModel(num_classes=7)  # replace with your number of classes
-# replace with your model path
+# Load the model architecture
+model = FERModel(num_classes=7)
+
+# Load the trained model weights
 model.load_state_dict(torch.load('model_42.pth'))
 model.eval()
 
-# Load the image
-image = Image.open('image2.jpg')  # replace with your image path
+# Load the image to run prediction on
+image = Image.open('image2.jpg')
 
-# Define the transformation
+# Define the transformations for preprocessing the image
 transform = transforms.Compose([
     transforms.Grayscale(),
     transforms.Resize((48, 48)),
@@ -21,7 +22,7 @@ transform = transforms.Compose([
 
 # Preprocess the image
 image = transform(image)
-image = image.unsqueeze(0)  # add a batch dimension
+image = image.unsqueeze(0)
 
 # Make the prediction
 with torch.no_grad():
