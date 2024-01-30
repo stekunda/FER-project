@@ -11,7 +11,7 @@ model.load_state_dict(torch.load('model_42.pth'))
 model.eval()
 
 # Load the image to run prediction on
-image = Image.open('IMG_6181.HEIC')
+image = Image.open('image2.jpg')
 
 # Define the transformations for preprocessing the image
 transform = transforms.Compose([
